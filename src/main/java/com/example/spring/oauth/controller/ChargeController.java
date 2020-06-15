@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.spring.oauth.api.Charge;
 import com.example.spring.oauth.api.DataList;
-import com.example.spring.oauth.dto.ChargeCapture;
-import com.example.spring.oauth.dto.ChargeReauth;
-import com.example.spring.oauth.dto.ChargeRefund;
+import com.example.spring.oauth.dto.ChargeCaptureRequest;
+import com.example.spring.oauth.dto.ChargeReauthRequest;
+import com.example.spring.oauth.dto.ChargeRefundRequest;
+import com.example.spring.oauth.dto.ChargeRequest;
 
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
@@ -44,27 +45,27 @@ public class ChargeController extends BaseController {
 	}
 
 	@PostMapping("{id}")
-	public Mono<Charge> update(@PathVariable("id") String id, @Valid @RequestBody Charge charge) {
+	public Mono<Charge> update(@PathVariable("id") String id, @Valid @RequestBody ChargeRequest charge) {
 		log.debug("request => {}", id);
-		return postServer(Charge.TYPE, charge, Charge.class, "/charges/{id}", id);
+		return postServer(Charge.TYPE, charge, ChargeRequest.class, "/charges/{id}", id);
 	}
 
 	@PostMapping("{id}/reauth")
-	public Mono<Charge> reauth(@PathVariable("id") String id, @Valid @RequestBody ChargeReauth reauth) {
+	public Mono<Charge> reauth(@PathVariable("id") String id, @Valid @RequestBody ChargeReauthRequest reauth) {
 		log.debug("request => {}", id);
-		return postServer(Charge.TYPE, reauth, ChargeReauth.class, "/charges/{id}/reauth", id);
+		return postServer(Charge.TYPE, reauth, ChargeReauthRequest.class, "/charges/{id}/reauth", id);
 	}
 
 	@PostMapping("{id}/refund")
-	public Mono<Charge> refund(@PathVariable("id") String id, @Valid @RequestBody ChargeRefund refund) {
+	public Mono<Charge> refund(@PathVariable("id") String id, @Valid @RequestBody ChargeRefundRequest refund) {
 		log.debug("request => {}", id);
-		return postServer(Charge.TYPE, refund, ChargeRefund.class, "/charges/{id}/refund", id);
+		return postServer(Charge.TYPE, refund, ChargeRefundRequest.class, "/charges/{id}/refund", id);
 	}
 
 	@PostMapping("{id}/capture")
-	public Mono<Charge> capture(@PathVariable("id") String id, @Valid @RequestBody ChargeCapture capture) {
+	public Mono<Charge> capture(@PathVariable("id") String id, @Valid @RequestBody ChargeCaptureRequest capture) {
 		log.debug("request => {}", id);
-		return postServer(Charge.TYPE, capture, ChargeCapture.class, "/charges/{id}/capture", id);
+		return postServer(Charge.TYPE, capture, ChargeCaptureRequest.class, "/charges/{id}/capture", id);
 	}
 
 }

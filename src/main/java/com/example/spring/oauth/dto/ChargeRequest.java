@@ -16,7 +16,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Charge extends Entity {
+public class ChargeRequest extends Entity {
 
 	/**
 	 * éxï•ã‡äz

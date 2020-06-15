@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ChargeReauth extends Entity {
+public class ChargeReauthRequest extends Entity {
 
 	/**
 	 * ”FØ‚ª¸Œø‚·‚é‚Ü‚Å‚Ì“ú”.
