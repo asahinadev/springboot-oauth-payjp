@@ -1,0 +1,47 @@
+server:
+  port: 9002
+  ssl:
+    key-store:          "classpath:server.p12"
+    key-store-password: "12345678"
+    key-store-type:     "PKCS12"
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          payjp:
+            provider:      "payjp"
+            client-name:   "payjp"
+            redirect-uri:  "{baseUrl}/login/oauth2/code/{registrationId}"
+            client-id:     "a345373b717fb13b317b1b7831ead8fb017ee6b6"
+            client-secret: "9e3a35b23668c0968545b21e979353e5a73bc451e6cedfc8e6a813e"
+            authorization-grant-type:     "authorization_code"
+            client-authentication-method: "basic"
+            scope:
+              - accounts
+              - cards
+              - addresses
+
+        provider:
+          payjp:
+            authorization-uri:   "https://id.pay.jp/.oauth2/authorize"
+            token-uri:           "https://api.pay.jp/u/.oauth2/token"
+            user-info-uri:       "https://api.pay.jp/u/v1/accounts"
+            user-name-attribute: "id"
+
+  main:    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring-demo?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=JST&SslMode=DISABLED 
+    username: spring-demo
+    password: spring-demo
+
+    
+app:
+  payjpapi:
+    config:
+      privateKey: sk_test_ec27ecd1abcd0eb709fe5a04
+      publicKey: pk_test_0a3f5e071c09b734c0b441a1
+
+logging:  level:    com.example.spring.oauth: DEBUG
