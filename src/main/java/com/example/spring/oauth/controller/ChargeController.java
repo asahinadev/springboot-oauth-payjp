@@ -33,9 +33,9 @@ public class ChargeController extends BaseController {
 	}
 
 	@PostMapping
-	public Mono<Charge> create(@Valid @RequestBody Charge charge) {
+	public Mono<Charge> create(@Valid @RequestBody ChargeRequest charge) {
 		log.debug("request => {}", charge);
-		return postServer(Charge.TYPE, charge, Charge.class, "/charges");
+		return postServer(Charge.TYPE, charge, ChargeRequest.class, "/charges");
 	}
 
 	@GetMapping("{id}")
