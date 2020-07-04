@@ -31,4 +31,8 @@ public class BaseController {
 			ParameterizedTypeReference<E> type, T body, Class<T> clazz, String path, Object... values) {
 		return serverClient.post().uri(b -> b.path(path).build(values)).body(body, clazz).retrieve().bodyToMono(type);
 	}
+
+	<E, T> Mono<E> deleteServer(ParameterizedTypeReference<E> type, String path, Object... values) {
+		return serverClient.delete().uri(b -> b.path(path).build(values)).retrieve().bodyToMono(type);
+	}
 }
