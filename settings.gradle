@@ -1,1 +1,6 @@
-rootProject.name = 'springboot-oauth-payjp'
+pluginManagement {
+	repositories {
+		gradlePluginPortal()
+	}
+}
+rootProject.name = 'springboot-oauth2-payjp'
